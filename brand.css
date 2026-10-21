@@ -1,0 +1,7 @@
+:root{--navy:#111d33;--orange:#edbb00;--blue:#004d95;--magenta:#a50044;--pale:#fff8dc}
+.brand-logo{width:39px;height:39px;object-fit:contain;border-radius:8px;background:#fff;padding:2px}
+.nav-item.active{background:#20314c;box-shadow:inset 2px 0 var(--orange)}.nav-item.active .nav-icon{color:var(--orange)}
+.notice{background:#fffbee;border-color:#f0e5b9}.notice>span{background:#fbf0bd;color:#947400}.notice strong{color:var(--navy)}.notice p{color:#796d4e}.notice>a{color:var(--blue)}
+.eyebrow span,.source-link span,.text-button span,.source-buttons span,.verified-icon{color:var(--blue)}
+.import-button{background:var(--blue)}.import-button:hover{background:#003d78}.metric-card:first-child .metric-icon,.metric-card:nth-child(3) .metric-icon{color:var(--blue)}.bar-col i{background:var(--blue)}
+.avatar{background:#fbeaf1;color:var(--magenta)}.empty-icon{background:#f8f6ee;color:#9b8b4e}.source-dot{background:#edbb00;box-shadow:0 0 0 3px #514a2e}

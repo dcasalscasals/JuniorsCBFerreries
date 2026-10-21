@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101c2d" />
+    <title>CB Ferreries · Panel de temporada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./brand.css" />
+    <link rel="stylesheet" href="./components.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#inicio" aria-label="CB Ferreries inicio">
+          <img class="brand-logo" src="./logo-cb-ferreries.png" alt="" />
+          <span class="brand-name">FERRERIES <small>BASKETBALL</small></span>
+        </a>
+        <div class="season-label">TEMPORADA <strong>2026 / 27</strong></div>
+        <nav class="main-nav" aria-label="Navegación principal">
+          <button class="nav-item active" data-tab="inicio"><span class="nav-icon">◫</span>Resumen</button>
+          <button class="nav-item" data-tab="partidos"><span class="nav-icon">▣</span>Partidos <span class="nav-count" id="matchCount">0</span></button>
+          <button class="nav-item" data-tab="analisis"><span class="nav-icon">⌁</span>Análisis de partido</button>
+          <button class="nav-item" data-tab="jugadores"><span class="nav-icon">♙</span>Jugadores</button>
+          <button class="nav-item" data-tab="acumulado"><span class="nav-icon">▥</span>Acumulado</button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="source-card"><span class="source-dot"></span><div><small>FUENTE DE DATOS</small><strong>Federación FBIB</strong></div><a href="https://www.fbib.es/equipo/10454" target="_blank" rel="noreferrer" aria-label="Abrir equipo en FBIB">↗</a></div>
+          <div class="sidebar-foot">CB FERRERIES <span>·</span> MENORCA</div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="crumb"><span>CB Ferreries</span><b>/</b><strong id="crumbTitle">Resumen</strong></div>
+          <div class="top-actions"><span class="live-pill"><i></i> TEMPORADA 26/27</span><button id="refreshBtn" class="import-button">↻ <span>Actualizar</span></button><button id="importBtn" class="import-button">＋ <span>Importar datos</span></button><input type="file" id="fileInput" accept=".json,.csv,application/json,text/csv" hidden /></div>
+        </header>
+        <div id="notice" class="notice"><span>i</span><div><strong>Conectando con FBIB…</strong><p>Estamos cargando el calendario y las estadísticas disponibles.</p></div><a href="https://www.fbib.es/competicion/4200" target="_blank" rel="noreferrer">Ver competición ↗</a></div>
+
+        <section class="view active" id="view-inicio">
+          <div class="page-heading"><div><div class="eyebrow">CENTRO DE RENDIMIENTO <span>·</span> MENORCA</div><h1>Panel de temporada</h1><p class="subtitle">Una lectura clara del equipo, partido a partido.</p></div><a class="source-link" href="https://www.fbib.es/competicion/4200" target="_blank" rel="noreferrer">Abrir FBIB <span>↗</span></a></div>
+          <div class="metric-grid">
+            <article class="metric-card"><div class="metric-top"><span>PARTIDOS JUGADOS</span><span class="metric-icon">▣</span></div><div class="metric-number" id="playedMetric">—</div><div class="metric-foot">Temporada actual <span>●</span> FBIB</div></article>
+            <article class="metric-card"><div class="metric-top"><span>BALANCE</span><span class="metric-icon">↗</span></div><div class="metric-number" id="recordMetric">—</div><div class="metric-foot">Victorias <b id="winsMetric">—</b><span class="sep">/</span> Derrotas <b id="lossesMetric">—</b></div></article>
+            <article class="metric-card"><div class="metric-top"><span>PUNTOS POR PARTIDO</span><span class="metric-icon">⌁</span></div><div class="metric-number" id="ppgMetric">—<small> pts</small></div><div class="metric-foot">Anotados <span>·</span> media del equipo</div></article>
+            <article class="metric-card"><div class="metric-top"><span>PRÓXIMO PARTIDO</span><span class="metric-icon">◷</span></div><div class="metric-number next-number" id="nextMetric">Por confirmar</div><div class="metric-foot" id="nextFoot">Calendario de FBIB</div></article>
+          </div>
+          <div class="content-grid">
+            <article class="panel recent-panel"><div class="panel-head"><div><div class="eyebrow">SEGUIMIENTO</div><h2>Últimos partidos</h2></div><button class="text-button" data-goto="partidos">Ver calendario <span>→</span></button></div><div id="recentMatches" class="empty-state"><div class="empty-icon">▤</div><strong>Sin partidos cargados</strong><p>Los resultados y el calendario aparecerán aquí al importar los datos oficiales.</p></div></article>
+            <article class="panel"><div class="panel-head"><div><div class="eyebrow">TEMPORADA</div><h2>Ritmo del equipo</h2></div><span class="panel-tag">PUNTOS</span></div><div class="chart-wrap" id="teamChart"><div class="chart-empty"><span>—</span><p>La evolución se mostrará con los resultados de cada jornada.</p></div></div></article>
+          </div>
+          <div class="bottom-grid"><article class="panel"><div class="panel-head"><div><div class="eyebrow">DESTACADO</div><h2>Jugadores clave</h2></div><button class="text-button" data-goto="jugadores">Plantilla <span>→</span></button></div><div id="keyPlayers" class="empty-inline">Importa las actas para calcular las aportaciones individuales.</div></article><article class="panel source-panel"><div class="panel-head"><div><div class="eyebrow">ORIGEN</div><h2>Datos federativos</h2></div><span class="verified-icon">↗</span></div><p>Consulta los resultados, calendario y actas publicados por la Federació de Bàsquet de les Illes Balears.</p><div class="source-buttons"><a href="https://www.fbib.es/equipo/10454" target="_blank" rel="noreferrer">Ficha del equipo <span>↗</span></a><a href="https://www.fbib.es/competicion/4200" target="_blank" rel="noreferrer">Competición y actas <span>↗</span></a></div></article></div>
+        </section>
+
+        <section class="view" id="view-partidos"><div class="page-heading"><div><div class="eyebrow">TEMPORADA 2026 / 27</div><h1>Partidos y calendario</h1><p class="subtitle">Resultados disputados y próximas jornadas.</p></div><div class="filter-pills"><button class="filter active" data-filter="all">Todos</button><button class="filter" data-filter="played">Jugados</button><button class="filter" data-filter="upcoming">Pendientes</button></div></div><div class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>JORNADA</th><th>FECHA</th><th>PARTIDO</th><th>RESULTADO</th><th>ESTADO</th><th></th></tr></thead><tbody id="matchTable"><tr><td colspan="6" class="table-empty">Aún no hay partidos cargados. Usa «Importar datos» o consulta la competición FBIB.</td></tr></tbody></table></div></div></section>
+
+        <section class="view" id="view-analisis"><div class="page-heading"><div><div class="eyebrow">LECTURA TÁCTICA</div><h1>Análisis de partido</h1><p class="subtitle">Parciales, estadísticas y contribución individual de cada acta.</p></div><select id="gameSelect" class="select-control"><option value="">Selecciona un partido</option></select></div><div id="analysisContent" class="analysis-layout"><div class="panel analysis-empty"><div class="empty-icon">⌁</div><h2>Selecciona un partido</h2><p>El análisis incluirá parciales por cuarto, porcentajes de tiro, rebotes, asistencias, pérdidas, faltas y rendimiento individual según los datos del acta.</p><a href="https://www.fbib.es/competicion/4200" target="_blank" rel="noreferrer">Consultar actas FBIB ↗</a></div></div></section>
+
+        <section class="view" id="view-jugadores"><div class="page-heading"><div><div class="eyebrow">RENDIMIENTO INDIVIDUAL</div><h1>Jugadores</h1><p class="subtitle">Minutos, anotación, acierto y aportación al equipo.</p></div><span class="panel-tag">POR PARTIDO</span></div><div class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>JUGADOR</th><th>GP</th><th>MIN</th><th>PTS</th><th>TC %</th><th>2P %</th><th>3P %</th><th>TL %</th><th>REB</th><th>AST</th><th>VAL</th></tr></thead><tbody id="playerTable"><tr><td colspan="11" class="table-empty">Las estadísticas individuales aparecerán al cargar las actas de la competición.</td></tr></tbody></table></div></div><div class="player-note">Los porcentajes se calculan como tiros convertidos / intentados. Las medias consideran solo los partidos con participación registrada.</div></section>
+
+        <section class="view" id="view-acumulado"><div class="page-heading"><div><div class="eyebrow">VISTA GLOBAL</div><h1>Acumulado de temporada</h1><p class="subtitle">Totales del equipo y suma de las aportaciones individuales.</p></div><span class="panel-tag">TEMPORADA COMPLETA</span></div><div class="metric-grid compact"><article class="metric-card"><div class="metric-top"><span>PUNTOS</span><span class="metric-icon">◉</span></div><div class="metric-number" id="totalPoints">—</div><div class="metric-foot">Anotados · todos los partidos</div></article><article class="metric-card"><div class="metric-top"><span>REBOTES</span><span class="metric-icon">⌁</span></div><div class="metric-number" id="totalRebounds">—</div><div class="metric-foot">Capturados por el equipo</div></article><article class="metric-card"><div class="metric-top"><span>ASISTENCIAS</span><span class="metric-icon">↗</span></div><div class="metric-number" id="totalAssists">—</div><div class="metric-foot">Canastas generadas</div></article><article class="metric-card"><div class="metric-top"><span>VALORACIÓN</span><span class="metric-icon">★</span></div><div class="metric-number" id="totalEval">—</div><div class="metric-foot">Suma de valoración individual</div></article></div><div class="content-grid"><article class="panel"><div class="panel-head"><div><div class="eyebrow">EFICACIA</div><h2>Porcentajes de tiro</h2></div></div><div id="shootingSummary" class="shooting-empty">Las actas deben incluir tiros anotados e intentados para calcular la eficacia del equipo.</div></article><article class="panel"><div class="panel-head"><div><div class="eyebrow">CONTEXTO</div><h2>Lectura acumulada</h2></div></div><div id="seasonInsight" class="insight-empty">Con partidos importados, aquí se resumirán tendencias de anotación, balance de resultados y líderes estadísticos.</div></article></div></section>
+        <footer class="footer">CB Ferreries · Panel de análisis <span>Datos vinculados a FBIB</span></footer>
+      </main>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
