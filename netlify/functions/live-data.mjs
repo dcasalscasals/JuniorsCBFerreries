@@ -41,12 +41,15 @@ function mapMatch(match) {
 function mapPlayer(player) {
   return {
     name: player.name || player.namePlayer || 'Jugador', dorsal: player.dorsal ?? '',
+    photoUrl: [player.photoUrl, player.imageUrl, player.photo, player.image, player.avatar].find(value => typeof value === 'string' && /^https?:\/\//i.test(value)) || '',
+    uuid: player.uuid || '',
     games: Number(player.matchesPlayed || 0), minutes: Number(player.timePlayed || 0),
     points: Number(player.totalScore || 0),
     twoMade: Number(player.sumShotsOfTwoSuccessful || 0), twoAttempted: Number(player.sumShotsOfTwoAttempted || 0),
     threeMade: Number(player.sumShotsOfThreeSuccessful || 0), threeAttempted: Number(player.sumShotsOfThreeAttempted || 0),
     ftMade: Number(player.sumShotsOfOneSuccessful || 0), ftAttempted: Number(player.sumShotsOfOneAttempted || 0),
     rebounds: Number(player.sumRebounds || 0), assists: Number(player.sumAssists || 0),
+    steals: Number(player.sumSteals || 0), blocks: Number(player.sumBlocks || player.sumBlock || 0),
     turnovers: Number(player.sumLost || 0), fouls: Number(player.sumFouls || 0),
     efficiency: Number(player.sumValoration || 0),
     pointsPerGame: Number(player.totalScoreAvgByMatch || 0)
