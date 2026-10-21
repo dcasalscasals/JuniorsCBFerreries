@@ -10,6 +10,8 @@ Conecta el repositorio con Netlify y configura **Publish directory** como `.`; d
 
 `netlify/functions/live-data.mjs` lee el calendario y marcador del servicio que alimenta FBIB y las estadísticas acumuladas de la API pública de la web de referencia. `netlify/functions/match-details.mjs` obtiene el detalle del acta cuando se abre el análisis de un partido. La web se sincroniza al cargar, al pulsar **Actualizar** y cada cinco minutos mientras está visible. Netlify aplica una caché corta para reducir peticiones.
 
+El análisis de cada encuentro organiza los datos del acta en **RESUM** (parcial y comparación de eficacia por periodo), **TIRS** (intentos y aciertos de dos, tres y libres, también por jugador) y **JUGADES** (secuencia de anotación con minuto y marcador progresivo). La API entrega eventos de anotación y estadísticas por periodo; algunas actas no contienen jugadas tácticas descritas, y en ese caso la interfaz lo indica sin inventar acciones.
+
 Por defecto, las estadísticas acumuladas y actas se leen de `https://juniorascferre.netlify.app`. Publica este panel en un **sitio Netlify separado** y configura `REFERENCE_SITE` si la fuente cambia. Si sustituyes el despliegue de referencia por este panel bajo el mismo dominio, sus endpoints anteriores dejarán de estar disponibles y habrá que migrar también esas funciones.
 
 **Importar datos** sigue disponible como alternativa manual en JSON/CSV. Formato recomendado:
